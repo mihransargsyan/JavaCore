@@ -24,7 +24,6 @@ public class FigurePainter {
             }
             System.out.println();
         }
-
         // Երրորդ օրինակը
         System.out.println(); // իրարից առանձնացնելու համար
 
@@ -37,6 +36,4 @@ public class FigurePainter {
             System.out.println();
         }
     }
-
-
 }
