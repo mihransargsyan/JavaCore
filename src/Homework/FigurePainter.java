@@ -3,35 +3,82 @@ package Homework;
 public class FigurePainter {
 
     public static void main(String[] args) {
-        // Առաջին օրինակը
-        for (int i = 0; i < 5; i++) {
 
-            for (int j = 0; j < i; j++) {
+        System.out.println(" 1 orinak ");
 
-                System.out.print("* ");
-            }
-            System.out.println();
-        }
-        // Երկրորդ օրինակը
-        System.out.println(); // իրարից առանձնացնելու համար
         for (int i = 0; i < 4; i++) {
-            for (int j = i; j < 4; j++) {
-                System.out.print("  ");
 
-            }
-            for (int k = 4 - i; k < 5; k++) {
+            for (int j = 0; j <= i; j++) {
+
                 System.out.print("* ");
             }
             System.out.println();
         }
-        // Երրորդ օրինակը
-        System.out.println(); // իրարից առանձնացնելու համար
+        System.out.println(" 2 orinak ");
+
+        for (int i = 0; i < 4; i++) {
+
+            for (int j = 4; j > i; j--) {
+
+                System.out.print("  ");
+            }
+            for (int j = 0; j <= i; j++) {
+
+                System.out.print("* ");
+            }
+            System.out.println();
+        }
+        System.out.println(" 3 orinak ");
 
         for (int i = 0; i < 5; i++) {
 
-            for (int j = i; j < 4; j++) {
+            for (int j = 4; j > i; j--) {
+
+                System.out.print(" *");
+
+            }
+            System.out.println();
+        }
+        System.out.println(" 4 orinak ");
+
+        for (int i = 0; i < 5; i++) {
+
+            for (int j = 0; j < i + 4; j++) {
+
+                System.out.print("  ");
+            }
+            for (int k = 4; k > i; k--) {
 
                 System.out.print("* ");
+            }
+            System.out.println();
+        }
+        System.out.println(" 5 orinak  teq kstacvi (( ");
+
+        for (int i = 0; i < 4; i++) {
+
+            for (int j = 4; j > i; j--) {
+
+                System.out.print("  ");
+            }
+            for (int j = 0; j <= i; j++) {
+
+                System.out.print("*  ");
+            }
+            System.out.println();
+        }
+
+        for (int i = 1; i < 4; i++) {
+
+            for (int j = 3; j > 0; j--) {
+
+                System.out.print(" ");
+            }
+
+            for (int j = 4; j > i; j--) {
+
+                System.out.print("*  ");
+
             }
             System.out.println();
         }
