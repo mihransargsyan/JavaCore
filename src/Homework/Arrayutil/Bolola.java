@@ -18,31 +18,26 @@ public class Bolola {
 
         System.out.println("2 օրինակ");
 
-        for (int i = bolola.length / 2 - 1; i < bolola.length / 2 + 1; i++) {
-            System.out.println(bolola[i]);
-        }
+        System.out.print(bolola[bolola.length / 2 - 1]);
+        System.out.println(bolola[bolola.length / 2]);
+
 
         System.out.println("3 օրինակ");
 
-        for (int i = bolola.length - 2; i < bolola.length; i++) {
-            if (bolola[i] == 'l') {
-                i++;
-                if (bolola[i] == 'y') {
-                    System.out.println("true");
-                } else
-                    System.out.println("false");
-            }
-        }
+        if (bolola[bolola.length - 2] == 'l' && bolola[bolola.length - 1] == 'y') {
+            System.out.println("true");
+        } else
+            System.out.println("false");
+
 
         System.out.println("4 օրինակ");
 
         char[] chars = {'b', 'a', 'b', 'o', 'l', 'a'};
-        for (int i = 0; i < chars.length; i++) {
-
-            if (chars[i] != 'b') continue;
-            else if (chars[i] == 'b')
-                i += 2;
-            if (chars[i] == 'b') {
+        for (int j = 0; j < chars.length - 2; j++) {
+            if (chars[j] != 'b') continue;
+            else if (chars[j] == 'b')
+                j += 2;
+            if (chars[j] == 'b') {
                 System.out.println(true);
                 break;
             } else System.out.println(false);
@@ -54,12 +49,10 @@ public class Bolola {
 
         for (int i = 0; i < text.length; i++) {
             if (text[i] == ' ') continue;
-            System.out.print(text[i]);
+                System.out.print(text[i]);
 
         }
-
     }
-
 }
 
 
