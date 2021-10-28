@@ -1,4 +1,4 @@
-package Homework.Arrayutil;
+package homework.arrayUtil;
 
 public class Bolola {
 
