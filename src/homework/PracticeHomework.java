@@ -17,7 +17,7 @@ public class PracticeHomework {
         return nextNum;
     }
 
-    boolean result;
+    boolean result = false;
 
     boolean isSameNum(int a, int b) {
         if (a == b) {
