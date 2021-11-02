@@ -17,21 +17,21 @@ public class PracticeHomework {
         return nextNum;
     }
 
-    boolean result = false;
+    boolean result;
 
     boolean isSameNum(int a, int b) {
         if (a == b) {
             result = true;
-        }
+        } else result = false;
         return result;
     }
 
-    boolean x = false;
+    boolean x;
 
     boolean lessThanOrEqualToZero(int number) {
         if (number <= 0) {
             x = true;
-        }
+        } else x = false;
         return x;
     }
 

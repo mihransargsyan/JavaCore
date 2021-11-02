@@ -15,17 +15,17 @@ public class PracticeHomeworkDemo {
         int nextNumber = practiceHomework.nextNumber(10);
         System.out.println("Next Number = " + nextNumber);
 
-        boolean isSameNun = practiceHomework.isSameNum(10, 8);
+        boolean isSameNun = practiceHomework.isSameNum(8, 8);
         System.out.println(isSameNun);
 
-        boolean lessThanOrEqualToZero = practiceHomework.lessThanOrEqualToZero(10);
+        boolean lessThanOrEqualToZero = practiceHomework.lessThanOrEqualToZero(0);
         System.out.println(lessThanOrEqualToZero);
 
         boolean reverseBool = practiceHomework.reverseBool(false);
         System.out.println(reverseBool);
 
         int[] array1 = {1, 9, 69, 85, 74, 85};
-        int[] array2 = {1, 5, 74, 85, 57, 96, 847, 2};
+        int[] array2 = {1, 5, 74, 85, 57, 96, 847, 2, 9};
         int maxLength = practiceHomework.maxLength(array1, array2);
         System.out.println(maxLength);
     }
