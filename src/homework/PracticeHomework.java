@@ -2,50 +2,50 @@ package homework;
 
 public class PracticeHomework {
 
+    // փոխակերպել տրված րոպեն վայրկյանի և վերադարձնել
+
     long convert(int minutes) {
-        long seconds = minutes * 60;
-        return seconds;
+        return minutes * 60;
     }
+
+    // ընդունել տարին, վերադարձնել օրերի քանակը
 
     int calcAge(int years) {
-        int days = years * 365;
-        return days;
+        return years * 365;
     }
+
+    // վերադարձնել տրված թվի հաջորդ թիվը
 
     int nextNumber(int number) {
-        int nextNum = number + 1;
-        return nextNum;
+        return ++number;
     }
 
-    boolean result;
+    // վերադարձնել true եթե տրված a և b թվերը իրար հավասար են, եթե ոչ false
 
     boolean isSameNum(int a, int b) {
         if (a == b) {
-            result = true;
-        } else result = false;
-        return result;
+            return true;
+        }
+        return false;
+        // կամ return a==b;
     }
 
-    boolean x;
+    // վերադարձնել true եթե թիվը <=0- ին մնացած դեպքերում վերադարձնել false
 
     boolean lessThanOrEqualToZero(int number) {
-        if (number <= 0) {
-            x = true;
-        } else x = false;
-        return x;
+        return number <= 0;
     }
 
+    // վերադարձնել ընդունող բուլյանի ժխտված արժեքը
     boolean reverseBool(boolean value) {
         return !value;
     }
 
-    int length;
+    //վերադարձնել երկու մասիվի ամենամեծ length-ը
 
     int maxLength(int[] array1, int[] array2) {
-        if (array1.length >= array2.length) {
-            length = array1.length;
-        } else
-            length = array2.length;
-        return length;
+        return array1.length > array2.length
+                ? array1.length : array2.length;
     }
+
 }
