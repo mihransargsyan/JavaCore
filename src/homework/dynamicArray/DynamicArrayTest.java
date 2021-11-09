@@ -22,7 +22,7 @@ public class DynamicArrayTest {
         da.add(14);
         da.add(15);
 
-        int byIndex = da.getByIndex(15);
+        int byIndex = da.getByIndex(16);
         System.out.println(byIndex);
 
         da.print();
