@@ -7,11 +7,11 @@ public class DynamicArray {
     // սա մեր մասիվիմեջ ավելացված էլեմենտների քանակն է
     private int size = 0;
 
-    DynamicArray(){
+    DynamicArray() {
         array = new int[10];
     }
 
-    DynamicArray(int length){
+    DynamicArray(int length) {
         array = new int[length];
     }
 
@@ -45,7 +45,7 @@ public class DynamicArray {
             System.err.println("invalid index: ");
             return -1;
         }
-        return  array[index];
+        return array[index];
     }
 
     // տպել մասիվի ավելացված էլեմենտները
@@ -53,5 +53,53 @@ public class DynamicArray {
         for (int i = 0; i < size; i++) {
             System.out.print(array[i] + " ");
         }
+        System.out.println();
+    }
+
+    void delete(int index) {
+        if (index >= 0 && index < size) {
+            for (int i = index; i < size - 1; i++)
+                array[i] = array[i + 1];
+            size--;
+        } else
+            System.err.println("invalid index: ");
+
+    }
+
+    public void add(int[] numbers) {
+        for (int number : numbers) {
+            add(number);
+        }
+    }
+
+    public void add(int value, int index) {
+        if (size == array.length) {
+            extend();
+        }
+        for (int i = size; i >= index; i--) {
+            array[i + 1] = array[i];
+        }
+        array[index] = value;
+        size++;
+    }
+
+    public void set(int value, int index) {
+        if (index >= 0 && index < size) {
+            array[index] = value;
+        } else
+            System.err.println("invalid index: ");
+    }
+
+    public boolean isEmpty() {
+        return size == 0;
+    }
+
+    public boolean isExists(int value) {
+        for (int i = 0; i < size; i++) {
+            if (array[i] == value) {
+                return true;
+            }
+        }
+        return false;
     }
 }

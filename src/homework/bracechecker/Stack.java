@@ -1,14 +1,14 @@
 package homework.bracechecker;
 
 public class Stack {
-    char[] array = new char[10];
-    int index;
+    private int[] array = new int[10];
+    private int index;
 
     Stack() {
         index = -1;
     }
 
-    void push(char item) {
+    public void push(int item) {
         if (index == 9) {
             System.out.println("Stack is full");
         } else {
@@ -16,13 +16,16 @@ public class Stack {
         }
     }
 
-    char pop() {
+    public int pop() {
         if (index < 0) {
-            System.out.println("Stack is empty");
+            //  System.out.println("Stack is empty");
             return 0;
         } else {
             return array[index--];
-
         }
+    }
+
+    public boolean isEmpty() {
+        return index == -1;
     }
 }
