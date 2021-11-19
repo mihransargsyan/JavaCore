@@ -119,4 +119,5 @@ public class AuthorTest {
         authorStorage.add(author);
         System.out.println("Thank you, author was added");
     }
+
 }
