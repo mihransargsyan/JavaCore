@@ -5,13 +5,13 @@ public class Author {
     private String name;
     private String surname;
     private String email;
-    private String age;
+    private int age;
     private String gender;
 
     public Author() {
     }
 
-    public Author(String name, String surname, String email, String age, String gender) {
+    public Author(String name, String surname, String email, int age, String gender) {
         this.name = name;
         this.surname = surname;
         this.email = email;
@@ -43,11 +43,11 @@ public class Author {
         this.email = email;
     }
 
-    public String getAge() {
+    public int getAge() {
         return age;
     }
 
-    public void setAge(String age) {
+    public void setAge(int age) {
         this.age = age;
     }
 
