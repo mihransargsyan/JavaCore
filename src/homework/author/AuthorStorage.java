@@ -1,11 +1,12 @@
 package homework.author;
 
 public class AuthorStorage {
-    private Author[] authors = new Author[10];
-    private int size = 0;
+
+    private Author[] authors = new Author[16];
+    private int size;
 
     public void add(Author author) {
-        if (size == authors.length) {
+        if (authors.length == size) {
             extend();
         }
         authors[size++] = author;
@@ -13,19 +14,8 @@ public class AuthorStorage {
 
     private void extend() {
         Author[] tmp = new Author[authors.length + 10];
-//        for (int i = 0; i < array.length; i++) {
-//            tmp[i] = array[i];
-//        }
         System.arraycopy(authors, 0, tmp, 0, authors.length);
         authors = tmp;
-    }
-
-    public Author getByIndex(int index) {
-        if (index < 0 || index > size) {
-            System.err.println("invalid index: ");
-            return null;
-        }
-        return authors[index];
     }
 
     public void print() {
@@ -45,11 +35,19 @@ public class AuthorStorage {
 
     public void searchByAge(int minAge, int maxAge) {
         for (int i = 0; i < size; i++) {
-            if (authors[i].getAge() > minAge &&
-                    authors[i].getAge() < maxAge) {
+            if (authors[i].getAge() >= minAge &&
+                    authors[i].getAge() <= maxAge) {
                 System.out.println(authors[i]);
             }
         }
     }
 
+    public Author getByEmail(String email) {
+        for (int i = 0; i < size; i++) {
+            if (authors[i].getEmail().equals(email)) {
+                return authors[i];
+            }
+        }
+        return null;
+    }
 }
