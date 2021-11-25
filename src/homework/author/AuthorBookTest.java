@@ -20,11 +20,14 @@ public class AuthorBookTest {
     private static final String COUNT_BOOKS_BY_AUTHOR = "9";
     private static final String CHANGE_AUTHOR = "10";
     private static final String CHANGE_BOOK_AUTHOR = "11";
+    private static final String DELETE_BY_AUTHOR = "12";
+    private static final String DELETE_AUTHOR = "13";
+    private static final String DELETE_BOOK = "14";
 
     public static void main(String[] args) {
 
         authorStorage.add(new Author("poxos", "poxosyan", 22, "poxos@mail.com", "male"));
-        authorStorage.add(new Author("poxosuhi", "poxosyan", 23, "poxosuhi@mail.com", "female"));
+        authorStorage.add(new Author("martiros", "martirosyan", 30, "martiros@mail.com", "male"));
         authorStorage.add(new Author("petros", "petrosyan", 25, "petros@mail.com", "male"));
 
         bookStorage.add(new Book("girq1", "nor", 5000, 10, new
@@ -75,26 +78,58 @@ public class AuthorBookTest {
                 case CHANGE_BOOK_AUTHOR:
                     changeBookAuthor();
                     break;
+                case DELETE_BY_AUTHOR:
+                    deleteByAuthor();
+                    break;
+                case DELETE_AUTHOR:
+                    deleteAuthor();
+                    break;
+                case DELETE_BOOK:
+                    deleteBook();
+                    break;
                 default:
-                    System.out.println("Invalid command!");
+                    System.err.println("Invalid command!");
             }
-
         }
     }
 
-    private static void changeBookAuthor() {
-        System.out.println("please input keyword");
+    private static void deleteBook() {
+        System.out.println("please input title books");
         String keyword = scanner.nextLine();
-        Book book = bookStorage.changeBookAuthor(keyword);
-        System.out.println("please input author's email");
-        String email = scanner.nextLine();
-        Author author = bookStorage.searchAuthor(email);
-        book.setAuthor(author);
+        bookStorage.deleteBook(keyword);
+    }
 
+    private static void deleteAuthor() {
+        System.out.println("please input author's email");
+        String keyword = scanner.nextLine();
+        authorStorage.deleteAuthor(keyword);
+    }
+
+    private static void deleteByAuthor() {
+        System.out.println("please input author's email");
+        String keyword = scanner.nextLine();
+        bookStorage.deleteByAuthor(keyword);
+    }
+
+    private static void changeBookAuthor() {
+        System.out.println("please input title books");
+        String keyword = scanner.nextLine();
+
+        Book book = bookStorage.changeBookAuthor(keyword);
+        if (book != null) {
+            System.out.println("please input author's email");
+            String email = scanner.nextLine();
+            Author author = bookStorage.searchAuthor(email);
+            book.setAuthor(author);
+            System.out.println("Thank you, Author's was added");
+        } else {
+            System.err.println("invalid email! please try again");
+            changeBookAuthor();
+        }
     }
 
     private static void changeAuthor() {
-        System.out.println("please input keyword");
+        System.out.println("please input author's email ");
         String keyword = scanner.nextLine();
 
         Author author = authorStorage.getByEmail(keyword);
@@ -107,24 +142,27 @@ public class AuthorBookTest {
             author.setGender(scanner.nextLine());
             System.out.println("please input author's age");
             author.setAge(Integer.parseInt(scanner.nextLine()));
-        } else
-            System.out.println("invalid email! please try again");
+            System.out.println("Thank you, Author's was added");
+        } else {
+            System.err.println("invalid email! please try again");
+            changeAuthor();
+        }
     }
 
     private static void countBooksByAuthor() {
-        System.out.println("please input keyword");
+        System.out.println("please input author's email");
         String keyword = scanner.nextLine();
         bookStorage.countBooksByAuthor(keyword);
     }
 
     private static void searchBooksByAuthor() {
-        System.out.println("please input keyword");
+        System.out.println("please input author's email");
         String keyword = scanner.nextLine();
         bookStorage.searchBooksByAuthor(keyword);
     }
 
     private static void searchBooksByTitle() {
-        System.out.println("please input author's email");
+        System.out.println("please input book's title");
         String keyword = scanner.nextLine();
         bookStorage.searchByTitle(keyword);
     }
@@ -149,7 +187,6 @@ public class AuthorBookTest {
             Book book = new Book(title, desc, price, count, author);
 
             bookStorage.add(book);
-
             System.out.println("Thank you, Book was added");
         } else {
             System.out.println("invalid email! please try again");
@@ -179,10 +216,13 @@ public class AuthorBookTest {
         System.out.println("please input " + COUNT_BOOKS_BY_AUTHOR + " for search book count by author email");
         System.out.println("please input " + CHANGE_AUTHOR + " input author email change author ");
         System.out.println("please input " + CHANGE_BOOK_AUTHOR + " input books title change author ");
+        System.out.println("please input " + DELETE_BY_AUTHOR + " input authors email delete all books ");
+        System.out.println("please input " + DELETE_AUTHOR + " input authors email  delete author ");
+        System.out.println("please input " + DELETE_BOOK + " input books title delete books ");
     }
 
     private static void searchByName() {
-        System.out.println("please input keyword");
+        System.out.println("please input author's name");
         String keyword = scanner.nextLine();
         authorStorage.searchByName(keyword);
     }
