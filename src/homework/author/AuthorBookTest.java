@@ -33,7 +33,6 @@ public class AuthorBookTest {
         System.out.println("please input " + SEARCH_BOOKS_BY_TITLE + " for search book by title");
         System.out.println("please input " + PRINT_AUTHORS + " for print authors");
         System.out.println("please input " + PRINT_BOOKS + " for print books");
-
         System.out.println("please input " + SEARCH_BOOKS_BY_AUTHOR + " for SEARCH_BOOKS_BY_AUTHOR");
         System.out.println("please input " + COUNT_BOOKS_BY_AUTHOR + " for COUNT_BOOKS_BY_AUTHOR");
         System.out.println("please input " + CHANGE_AUTHOR + " for CHANGE_AUTHOR");
