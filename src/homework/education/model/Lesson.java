@@ -1,4 +1,4 @@
-package homework.education;
+package homework.education.model;
 
 import java.util.Objects;
 

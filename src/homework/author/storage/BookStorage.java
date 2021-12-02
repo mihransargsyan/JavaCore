@@ -1,4 +1,8 @@
-package homework.author;
+package homework.author.storage;
+
+import homework.author.model.Author;
+import homework.author.model.Book;
+import homework.author.util.ArrayUtil;
 
 public class BookStorage {
 
@@ -76,5 +80,4 @@ public class BookStorage {
             }
         }
     }
-
 }

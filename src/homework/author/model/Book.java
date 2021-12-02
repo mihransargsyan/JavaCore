@@ -1,4 +1,4 @@
-package homework.author;
+package homework.author.model;
 
 public class Book {
 
@@ -9,7 +9,7 @@ public class Book {
     private int count;
     private Author author;
 
-    public Book(String serialId, String title, String description, double price, int count, Author author) {
+    public Book(String serialId,String title, String description, double price, int count, Author author) {
         this.serialId = serialId;
         this.title = title;
         this.description = description;
@@ -108,7 +108,7 @@ public class Book {
                 ", price=" + price +
                 ", count=" + count +
                 ", author=" + author +
+
                 '}';
     }
-
 }

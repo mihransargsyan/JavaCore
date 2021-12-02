@@ -1,6 +1,6 @@
-package homework.education;
+package homework.education.storage;
 
-import homework.author.Book;
+import homework.education.model.Lesson;
 
 public class LessonStorage {
 

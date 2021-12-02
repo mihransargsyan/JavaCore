@@ -1,4 +1,7 @@
-package homework.education;
+package homework.education.storage;
+
+import homework.education.model.Lesson;
+import homework.education.model.Student;
 
 public class StudentStorage {
 

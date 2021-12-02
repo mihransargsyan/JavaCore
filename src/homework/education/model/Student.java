@@ -1,5 +1,8 @@
-package homework.education;
+package homework.education.model;
 
+import homework.education.util.DateUtil;
+
+import java.util.Date;
 import java.util.Objects;
 
 public class Student {
@@ -10,17 +13,19 @@ public class Student {
     private String email;
     private String phone;
     private Lesson lesson;
+    private Date dateOfBirth;
 
     Student() {
     }
 
-    public Student(String name, String surname, String age, String email, String phone, Lesson lesson) {
+    public Student(String name, String surname, String age, String email, String phone, Lesson lesson, Date dateOfBirth) {
         this.name = name;
         this.surname = surname;
         this.age = age;
         this.email = email;
         this.phone = phone;
         this.lesson = lesson;
+        this.dateOfBirth = dateOfBirth;
     }
 
     public String getName() {
@@ -71,17 +76,25 @@ public class Student {
         this.lesson = lesson;
     }
 
+    public Date getDateOfBirth() {
+        return dateOfBirth;
+    }
+
+    public void setDateOfBirth(Date dateOfBirth) {
+        this.dateOfBirth = dateOfBirth;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Student student = (Student) o;
-        return Objects.equals(name, student.name) && Objects.equals(surname, student.surname) && Objects.equals(age, student.age) && Objects.equals(email, student.email) && Objects.equals(phone, student.phone) && Objects.equals(lesson, student.lesson);
+        return Objects.equals(name, student.name) && Objects.equals(surname, student.surname) && Objects.equals(age, student.age) && Objects.equals(email, student.email) && Objects.equals(phone, student.phone) && Objects.equals(lesson, student.lesson) && Objects.equals(dateOfBirth, student.dateOfBirth);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(name, surname, age, email, phone, lesson);
+        return Objects.hash(name, surname, age, email, phone, lesson, dateOfBirth);
     }
 
     @Override
@@ -93,6 +106,7 @@ public class Student {
                 ", email='" + email + '\'' +
                 ", phone='" + phone + '\'' +
                 ", lesson=" + lesson +
+                ", dateOfBirth=" + DateUtil.dateToString(dateOfBirth) +
                 '}';
     }
 }
