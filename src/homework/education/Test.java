@@ -112,7 +112,6 @@ public class Test implements Commands {
         } catch (UserNotFoundException e) {
             System.out.println(e.getMessage());
         }
-
     }
 
     private static void userCommands() {
@@ -146,7 +145,6 @@ public class Test implements Commands {
                     System.err.println("Invalid command!");
             }
         }
-
     }
 
     private static void adminCommands() {
@@ -300,5 +298,4 @@ public class Test implements Commands {
         } else
             System.err.println(name + " the course is available");
     }
-
 }
