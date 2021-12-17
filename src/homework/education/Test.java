@@ -42,9 +42,9 @@ public class Test implements Commands {
         lessonStorage.add(new Lesson("Php", "8 amis", "Narek", 50000));
         lessonStorage.add(new Lesson("Html", "10 amis", "Petros", 45000));
 
-        userStorage.add(new User("Mihran", "Sargsyan", "mihran@mail.ru", "123456", "admin"));
-        userStorage.add(new User("Tigran", "Tigranyan", "tigran@mail.ru", "000000", "user"));
-        userStorage.add(new User("Martiros", "Martirosyan", "martiros@mail.ru", "888888", "user"));
+        userStorage.add(new User("Mihran", "Sargsyan", "mihran@mail.ru", "123456", UserType.ADMIN));
+        userStorage.add(new User("Tigran", "Tigranyan", "tigran@mail.ru", "000000", UserType.USER));
+        userStorage.add(new User("Martiros", "Martirosyan", "martiros@mail.ru", "888888", UserType.USER));
 
         boolean isRun = true;
         while (isRun) {
@@ -69,9 +69,9 @@ public class Test implements Commands {
     private static void register() {
         System.out.println(" please input user's email ");
         String email = scanner.nextLine();
-        User byEmail = null;
+
         try {
-            byEmail = userStorage.getByEmail(email);
+            User byEmail = userStorage.getByEmail(email);
             System.err.println("user with " + email + " already exists");
         } catch (UserNotFoundException e) {
             System.out.println(" please input user's password ");
@@ -81,13 +81,14 @@ public class Test implements Commands {
             System.out.println(" please input user's surname ");
             String surname = scanner.nextLine();
             System.out.println(" please input type (admin | user) ");
-            String type = scanner.nextLine();
-            if (type.equalsIgnoreCase("admin") || type.equalsIgnoreCase("user")) {
-                User user = new User(name, surname, email, password, type);
+
+            try {
+                String type = scanner.nextLine();
+                User user = new User(name, surname, email, password, UserType.valueOf(type.toUpperCase()));
                 userStorage.add(user);
                 System.out.println("User was registered");
-            } else {
-                System.err.println("type is invalid!!");
+            } catch (IllegalArgumentException ex) {
+                System.out.println(ex.getMessage());
             }
         }
     }
@@ -95,15 +96,15 @@ public class Test implements Commands {
     private static void login() {
         System.out.println(" please input user's email ");
         String email = scanner.nextLine();
-        User byEmail = null;
+
         try {
-            byEmail = userStorage.getByEmail(email);
+            User byEmail = userStorage.getByEmail(email);
             System.out.println(" please input user's password ");
             String password = scanner.nextLine();
             if (byEmail.getPassword().equals(password)) {
-                if (byEmail.getType().equalsIgnoreCase("admin")) {
+                if (byEmail.getType() == UserType.ADMIN) {
                     adminCommands();
-                } else if (byEmail.getType().equalsIgnoreCase("user")) {
+                } else if (byEmail.getType() == UserType.USER) {
                     userCommands();
                 }
             } else {
