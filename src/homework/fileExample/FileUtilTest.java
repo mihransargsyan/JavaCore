@@ -20,7 +20,7 @@ public class FileUtilTest {
         } else {
             System.out.println("please input keyword");
             String keyword = scanner.nextLine();
-            FileUtil.findLines(path, keyword);
+            FileUtil1.findLines(path, keyword);
         }
 
         //       Առաջադրանք 3 ․ 2
@@ -29,7 +29,7 @@ public class FileUtilTest {
         String pathOfPackage = scanner.nextLine();
         File file = new File(pathOfPackage);
         if (file.exists() && file.isDirectory()) {
-            System.out.println(FileUtil.printSizePackage(file) + " mb");
+            System.out.println(FileUtil1.printSizePackage(file) + " mb");
         } else {
             System.err.println("Path deos not exists or is not directory");
         }

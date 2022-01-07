@@ -1,9 +1,6 @@
-package homework.education.model;
-
-import homework.education.UserType;
+package newHomework.author.model;
 
 import java.io.Serializable;
-import java.util.Objects;
 
 public class User implements Serializable {
 
@@ -68,13 +65,24 @@ public class User implements Serializable {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
+
         User user = (User) o;
-        return Objects.equals(name, user.name) && Objects.equals(surname, user.surname) && Objects.equals(email, user.email) && Objects.equals(password, user.password) && Objects.equals(type, user.type);
+
+        if (name != null ? !name.equals(user.name) : user.name != null) return false;
+        if (surname != null ? !surname.equals(user.surname) : user.surname != null) return false;
+        if (email != null ? !email.equals(user.email) : user.email != null) return false;
+        if (password != null ? !password.equals(user.password) : user.password != null) return false;
+        return type != null ? type.equals(user.type) : user.type == null;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(name, surname, email, password, type);
+        int result = name != null ? name.hashCode() : 0;
+        result = 31 * result + (surname != null ? surname.hashCode() : 0);
+        result = 31 * result + (email != null ? email.hashCode() : 0);
+        result = 31 * result + (password != null ? password.hashCode() : 0);
+        result = 31 * result + (type != null ? type.hashCode() : 0);
+        return result;
     }
 
     @Override
@@ -87,5 +95,4 @@ public class User implements Serializable {
                 ", type='" + type + '\'' +
                 '}';
     }
-
 }

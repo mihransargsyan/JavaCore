@@ -8,11 +8,13 @@ public interface Commands {
     String PRINT_STUDENTS = "3";
     String PRINT_STUDENTS_BY_LESSON = "4";
     String PRINT_LESSONS = "5";
-    String DELETE_LESSON_BY_NAME = "6";
-    String DELETE_STUDENT_BY_EMAIL = "7";
+    String PRINT_USER = "6";
+    String DELETE_LESSON_BY_NAME = "7";
+    String DELETE_STUDENT_BY_EMAIL = "8";
+    String DELETE_USER = "9";
     String LOGIN = "1";
     String REGISTER = "2";
-    String LOG_OUT = "9";
+    String LOG_OUT = "10";
 
     static void printUserCommands() {
         System.out.println("please input " + EXIT + " for EXIT");
@@ -31,8 +33,10 @@ public interface Commands {
         System.out.println("please input " + PRINT_STUDENTS + " PRINT_STUDENTS");
         System.out.println("please input " + PRINT_STUDENTS_BY_LESSON + " PRINT_STUDENTS_BY_LESSON");
         System.out.println("please input " + PRINT_LESSONS + " PRINT_LESSONS");
+        System.out.println("please input " + PRINT_USER + " PRINT_USER");
         System.out.println("please input " + DELETE_LESSON_BY_NAME + " DELETE_LESSON_BY_NAME");
         System.out.println("please input " + DELETE_STUDENT_BY_EMAIL + " DELETE_STUDENT_BY_EMAIL");
+        System.out.println("please input " + DELETE_USER + " DELETE_USER");
         System.out.println("please input " + LOG_OUT + " LOG_OUT ");
     }
 

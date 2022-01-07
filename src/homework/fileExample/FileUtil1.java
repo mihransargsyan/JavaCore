@@ -2,7 +2,7 @@ package homework.fileExample;
 
 import java.io.*;
 
-public class FileUtil {
+public class FileUtil1 {
 
     public static void findLines(File path, String keyword) {
 

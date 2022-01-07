@@ -1,6 +1,5 @@
 package homework.education;
 
-import homework.education.exception.UserNotFoundException;
 import homework.education.model.Lesson;
 import homework.education.model.Student;
 import homework.education.model.User;
@@ -10,8 +9,7 @@ import homework.education.storage.UserStorage;
 import homework.education.util.DateUtil;
 
 import java.text.ParseException;
-import java.util.Date;
-import java.util.Scanner;
+import java.util.*;
 
 public class Test implements Commands {
 
@@ -22,30 +20,32 @@ public class Test implements Commands {
 
     public static void main(String[] args) {
 
-        Lesson lesson = new Lesson("Php", "8 amis", "Narek", 50000);
-        Lesson lesson1 = new Lesson("Html", "5 amis", "Karen", 40000);
-        Lesson[] lessons = {lesson, lesson1};
+//        Lesson lesson = new Lesson("Php", "8 amis", "Narek", 50000);
+//        Lesson lesson1 = new Lesson("Html", "5 amis", "Karen", 40000);
+//        Lesson [] lessons = {lesson,lesson1};
+//
+//        try {
+//            studentStorage.add(new Student("Mihran", "Sargsyan", "male", "mihran@mail.ru",
+//                    "099300600", new HashSet<>(Arrays.asList(lessons)), DateUtil.stringToDate("14/12/1984")));
+//            studentStorage.add(new Student("Tigran", "Tigranyan", "male", "tigran@mail.ru",
+//                    "099333738", new HashSet<>(Arrays.asList(lessons)), DateUtil.stringToDate("10/12/1989")));
+//            studentStorage.add(new Student("Poxos", "Poxosyan", "male", "poxos@mail.ru",
+//                    "099364646438", new HashSet<>(Arrays.asList(lessons)), DateUtil.stringToDate("18/11/1994")));
+//        } catch (ParseException e) {
+//            e.printStackTrace();
+//        }
+//
+//        lessonStorage.add(new Lesson("Java", "6 amis", "Karen", 35000));
+//        lessonStorage.add(new Lesson("JavaScript", "7 amis", "Karen", 40000));
+//        lessonStorage.add(new Lesson("Php", "8 amis", "Narek", 50000));
+//        lessonStorage.add(new Lesson("Html", "10 amis", "Petros", 45000));
+//
 
-        try {
-            studentStorage.add(new Student("Mihran", "Sargsyan", "male", "mihran@mail.ru",
-                    "099300600", lessons, DateUtil.stringToDate("14/12/1984")));
-            studentStorage.add(new Student("Tigran", "Tigranyan", "male", "tigran@mail.ru",
-                    "099333738", lessons, DateUtil.stringToDate("10/12/1989")));
-            studentStorage.add(new Student("Poxos", "Poxosyan", "male", "poxos@mail.ru",
-                    "099364646438", lessons, DateUtil.stringToDate("18/11/1994")));
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
+//        userStorage.add(new User("Tigran", "Tigranyan", "tigran@mail.ru", "000000", UserType.USER));
+//        userStorage.add(new User("Martiros", "Martirosyan", "martiros@mail.ru", "888888", UserType.USER));
+        //  userStorage.add(new User("Mihran", "Sargsyan", "mihran@mail.ru", "55555", UserType.ADMIN));
 
-        lessonStorage.add(new Lesson("Java", "6 amis", "Karen", 35000));
-        lessonStorage.add(new Lesson("JavaScript", "7 amis", "Karen", 40000));
-        lessonStorage.add(new Lesson("Php", "8 amis", "Narek", 50000));
-        lessonStorage.add(new Lesson("Html", "10 amis", "Petros", 45000));
-
-        userStorage.add(new User("Mihran", "Sargsyan", "mihran@mail.ru", "123456", UserType.ADMIN));
-        userStorage.add(new User("Tigran", "Tigranyan", "tigran@mail.ru", "000000", UserType.USER));
-        userStorage.add(new User("Martiros", "Martirosyan", "martiros@mail.ru", "888888", UserType.USER));
-
+        initData();
         boolean isRun = true;
         while (isRun) {
             Commands.printCommands();
@@ -66,39 +66,38 @@ public class Test implements Commands {
         }
     }
 
+    private static void initData() {
+        lessonStorage.initData();
+        studentStorage.initData();
+        userStorage.initData();
+    }
+
     private static void register() {
         System.out.println(" please input user's email ");
         String email = scanner.nextLine();
-
-        try {
-            User byEmail = userStorage.getByEmail(email);
-            System.err.println("user with " + email + " already exists");
-        } catch (UserNotFoundException e) {
+        User byMail = userStorage.getByEmail(email);
+        if (byMail == null) {
             System.out.println(" please input user's password ");
             String password = scanner.nextLine();
             System.out.println(" please input user's name ");
             String name = scanner.nextLine();
             System.out.println(" please input user's surname ");
             String surname = scanner.nextLine();
-            System.out.println(" please input type (admin | user) ");
 
-            try {
-                String type = scanner.nextLine();
-                User user = new User(name, surname, email, password, UserType.valueOf(type.toUpperCase()));
-                userStorage.add(user);
-                System.out.println("User was registered");
-            } catch (IllegalArgumentException ex) {
-                System.out.println(ex.getMessage());
-            }
+            User user = new User(name, surname, email, password, UserType.USER);
+            userStorage.add(user);
+            System.out.println("User was registered");
+
+        } else {
+            System.err.println("user with " + email + " already exists");
         }
     }
 
     private static void login() {
         System.out.println(" please input user's email ");
         String email = scanner.nextLine();
-
-        try {
-            User byEmail = userStorage.getByEmail(email);
+        User byEmail = userStorage.getByEmail(email);
+        if (byEmail != null) {
             System.out.println(" please input user's password ");
             String password = scanner.nextLine();
             if (byEmail.getPassword().equals(password)) {
@@ -110,8 +109,8 @@ public class Test implements Commands {
             } else {
                 System.err.println("password is wrong!" + password);
             }
-        } catch (UserNotFoundException e) {
-            System.out.println(e.getMessage());
+        } else {
+            System.err.println("invalid email !");
         }
     }
 
@@ -181,9 +180,29 @@ public class Test implements Commands {
                 case DELETE_STUDENT_BY_EMAIL:
                     deleteStudentByEmail();
                     break;
+                case DELETE_USER:
+                    deleteUser();
+                    break;
+                case PRINT_USER:
+                    userStorage.printUsers();
+                    break;
                 default:
                     System.err.println("Invalid command!");
             }
+        }
+    }
+
+    private static void deleteUser() {
+        System.out.println("--------");
+        userStorage.printUsers();
+        System.out.println("--------");
+        System.out.println("please input User email ");
+        String email = scanner.nextLine();
+        User user = userStorage.getByEmail(email);
+        if (user != null) {
+            userStorage.deleteUser(user);
+        } else {
+            System.err.println("There are no User email");
         }
     }
 
@@ -194,8 +213,9 @@ public class Test implements Commands {
         Student student = studentStorage.getByemail(email);
         if (student != null) {
             studentStorage.deleteStudent(email);
-        } else
+        } else {
             System.err.println("There are no Student email");
+        }
     }
 
     private static void printStudentList() {
@@ -210,7 +230,7 @@ public class Test implements Commands {
         String name = scanner.nextLine();
         Lesson lesson = lessonStorage.getByName(name);
         if (lesson != null) {
-            lessonStorage.deleteName(name);
+            lessonStorage.deleteByLessonName(lesson);
         } else
             System.err.println("There are no Lesson");
     }
@@ -249,7 +269,7 @@ public class Test implements Commands {
             String phone = scanner.nextLine();
             System.out.println("please input Student birth[12/01/2021]");
             String birth = scanner.nextLine();
-            Date date = null;
+            Date date;
             try {
                 date = DateUtil.stringToDate(birth);
             } catch (ParseException e) {
@@ -267,7 +287,7 @@ public class Test implements Commands {
                 }
             }
             if (lesson != null) {
-                Student students = new Student(name, surname, age, email, phone, lesson, date);
+                Student students = new Student(name, surname, age, email, phone, new HashSet<>(Arrays.asList(lesson)), date);
                 studentStorage.add(students);
                 System.out.println("Thank you, Student was added");
             } else
