@@ -9,7 +9,10 @@ import homework.education.storage.UserStorage;
 import homework.education.util.DateUtil;
 
 import java.text.ParseException;
-import java.util.*;
+import java.util.Arrays;
+import java.util.Date;
+import java.util.HashSet;
+import java.util.Scanner;
 
 public class Test implements Commands {
 
@@ -26,7 +29,7 @@ public class Test implements Commands {
 //
 //        try {
 //            studentStorage.add(new Student("Mihran", "Sargsyan", "male", "mihran@mail.ru",
-//                    "099300600", new HashSet<>(Arrays.asList(lessons)), DateUtil.stringToDate("14/12/1984")));
+//                    "099300600", new HashSet<>(Arrays.asList(lesson)), DateUtil.stringToDate("14/12/1984")));
 //            studentStorage.add(new Student("Tigran", "Tigranyan", "male", "tigran@mail.ru",
 //                    "099333738", new HashSet<>(Arrays.asList(lessons)), DateUtil.stringToDate("10/12/1989")));
 //            studentStorage.add(new Student("Poxos", "Poxosyan", "male", "poxos@mail.ru",
@@ -40,10 +43,9 @@ public class Test implements Commands {
 //        lessonStorage.add(new Lesson("Php", "8 amis", "Narek", 50000));
 //        lessonStorage.add(new Lesson("Html", "10 amis", "Petros", 45000));
 //
-
-//        userStorage.add(new User("Tigran", "Tigranyan", "tigran@mail.ru", "000000", UserType.USER));
-//        userStorage.add(new User("Martiros", "Martirosyan", "martiros@mail.ru", "888888", UserType.USER));
-        //  userStorage.add(new User("Mihran", "Sargsyan", "mihran@mail.ru", "55555", UserType.ADMIN));
+//        userStorage.add(new User("Tigran", "Tigranyan", "tigran@mail.ru", "12345", UserType.USER));
+//        userStorage.add(new User("Martiros", "Martirosyan", "martiros@mail.ru", "5555", UserType.USER));
+//        userStorage.add(new User("Mihran", "Sargsyan", "mihran@mail.ru", "0000", UserType.ADMIN));
 
         initData();
         boolean isRun = true;
@@ -198,12 +200,7 @@ public class Test implements Commands {
         System.out.println("--------");
         System.out.println("please input User email ");
         String email = scanner.nextLine();
-        User user = userStorage.getByEmail(email);
-        if (user != null) {
-            userStorage.deleteUser(user);
-        } else {
-            System.err.println("There are no User email");
-        }
+        userStorage.deleteUser(email);
     }
 
     private static void deleteStudentByEmail() {

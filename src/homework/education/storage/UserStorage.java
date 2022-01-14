@@ -32,8 +32,8 @@ public class UserStorage {
         }
     }
 
-    public void deleteUser(User user) {
-        userMap.remove(user);
+    public void deleteUser(String email) {
+        userMap.remove(email);
         FileUtil.serialazeUser(userMap);
     }
 
