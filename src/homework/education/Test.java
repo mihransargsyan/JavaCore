@@ -45,7 +45,7 @@ public class Test implements Commands {
 //
 //        userStorage.add(new User("Tigran", "Tigranyan", "tigran@mail.ru", "12345", UserType.USER));
 //        userStorage.add(new User("Martiros", "Martirosyan", "martiros@mail.ru", "5555", UserType.USER));
-//        userStorage.add(new User("Mihran", "Sargsyan", "mihran@mail.ru", "0000", UserType.ADMIN));
+//        userStorage.add(new User("Mihran", "Sargsyan", "ppp", "0000", UserType.ADMIN));
 
         initData();
         boolean isRun = true;
